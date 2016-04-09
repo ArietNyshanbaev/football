@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'bet',
     'news',
     'forum',
+    'account',
 )
 
 MIDDLEWARE_CLASSES = (
