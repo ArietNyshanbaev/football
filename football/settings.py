@@ -41,7 +41,9 @@ INSTALLED_APPS = (
     'bet',
     'news',
     'forum',
-    'account',
+    'mathfilters',
+    'password_reset',
+    'reservation',
 )
 
 MIDDLEWARE_CLASSES = (

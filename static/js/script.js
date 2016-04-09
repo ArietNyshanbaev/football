@@ -105,7 +105,7 @@ $(document).ready(function () {
     });
 
     $('.menu div.portfolio-btn').on('click', function () {
-        location.href = "http://www.ibox.kg";
+        location.href = '/reservation';
     });
 
     $('.menu div.service-btn').on('click', function () {
@@ -113,7 +113,7 @@ $(document).ready(function () {
     });
 
     $('.menu div.contact-btn').on('click', function () {
-       window.location.href = '/forum';
+       window.location.href = 'www.ibox.kg';
     });
 
 

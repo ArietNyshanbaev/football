@@ -8,8 +8,11 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^', include('main.urls', namespace='main')),
-    url(r'^news/', include('news.urls', namespace='news')),
+    url(r'^news/',include('news.urls',namespace='news')),
+    url(r'^bet/',include('bet.urls', namespace='bet')),
+    url(r'^reservation/',include('reservation.urls',namespace='reservation')),
     url(r'^account/', include('account.urls', namespace='account')),
+    url(r'^',include('password_reset.urls')),
 ]# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += patterns('',

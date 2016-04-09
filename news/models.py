@@ -1,47 +1,49 @@
-﻿from django.core.files.uploadedfile import InMemoryUploadedFile
-from django.db import models
-from datetime import datetime
+﻿from django.db import models
+from datetime import datetime 
 from django.contrib.auth.models import User
 
+# Create your models here.
 class League(models.Model):
-	"""League of the team"""
-
-
-	title = models.CharField('название лиги', max_length=100)
+	"""League class is the class which represents football Leagues"""
+	name = models.CharField('название', max_length = 100)
+	slogan = models.CharField('девиз', max_length = 300)
+	image1 = models.ImageField('фото', upload_to = 'media/league')
+	
 	def __unicode__(self):
-		return self.title
-   
+		return self.name
+
 	class Meta:
-		verbose_name = "Лига"
-		verbose_name_plural = "Лиги"
+		verbose_name = 'лига'
+		verbose_name_plural = 'лиги'
 
 class Team(models.Model):
-	"""Team in league"""
-
-	title = models.CharField('название команды',max_length=100)
+	"""Team class is the class which represents football Team"""
+	name = models.CharField('название', max_length = 100)
+	slogan = models.CharField('девиз', max_length = 300)
 	league = models.ForeignKey(League, verbose_name='лига')
-	image_emblem = models.ImageField('значок клуба', upload_to='media', null=True, blank=True)
-	image_squad = models.ImageField('состав', upload_to='media', null=True, blank=True)
+	image1 = models.ImageField('фото', upload_to = 'media/team')
 
 	def __unicode__(self):
-		return self.title
+		return self.name
 
 	class Meta:
-		verbose_name = "Команда"
-		verbose_name_plural = "Команды"
+		verbose_name = 'команда'
+		verbose_name_plural = 'команды'
 
 class News(models.Model):
-	"""News for each team """
-	title = models.CharField('тема', max_length=100)
-	body = models.TextField('тело')
+	"""News class is the class which represents news for particular Team"""
+	image = models.ImageField('фото', upload_to = 'media/news',null=True, blank=True)
+	date = models.DateTimeField('дата' ,default=datetime.now)
 	team = models.ForeignKey(Team, verbose_name='команда')
-	image = models.ImageField('фото', upload_to='media', null=True, blank=True)
-	added_date = models.DateTimeField('дата добавления', default=datetime.now)
-	readed = models.IntegerField('количесто просмотров', default=0)
-	added_by = models.ForeignKey(User, verbose_name='добавлено кем')
-    
+	title = models.CharField('тема', max_length = 200, null=True, blank=True)
+	description = models.TextField('короткое изложение', null=True, blank=True)
+	body = models.TextField('новость', null=True, blank=True)
+	user = models.ForeignKey(User, verbose_name='ползователь')
+	
 	def __unicode__(self):
 		return self.title
+
 	class Meta:
-		verbose_name = "Новость"
-		verbose_name_plural = "Новости"
+		verbose_name = 'новости'
+		verbose_name_plural = 'новости'
+	

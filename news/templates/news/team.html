@@ -1,288 +1,194 @@
-{%load staticfiles%}
-<!doctype html>
-
-<html>
-
-<head>
+{% load staticfiles %}
+<!Doctype html>
+<html lang="ru">
+  <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="keywords" content="купить, продать, смартфоны, сотка, бишкек, кыргызстан, купить смартфон в бишкеке, ноутбуки, iphone в бишкеке, продать в бишкеке, apple, macbook, ultrabook, ibox">
-    <meta name="author" content="iBox Team">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="#">
-    <link rel="stylesheet" type="text/css" href=" {% static 'css-secondary/release11/bootstrap.min.css' %}" media="screen, projection">
-    <link rel="stylesheet" type="text/css" href=" {% static 'css-secondary/release11/newcss.css' %}" media="screen, projection">
-    <link rel="stylesheet" type="text/css" href=" {% static 'css-secondary/libraries/chosen/chosen.min.css' %}" media="screen, projection">
-    <link rel="stylesheet" type="text/css" href=" {% static 'css-secondary/libraries/pictopro-outline/pictopro-outline.css' %}" media="screen, projection">
-    <link rel="stylesheet" type="text/css" href=" {% static 'css-secondary/libraries/pictopro-normal/pictopro-normal.css' %}" media="screen, projection">
-    <link rel="stylesheet" type="text/css" href=" {% static 'css-secondary/libraries/colorbox/colorbox.css' %}" media="screen, projection">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-    <link rel="stylesheet" type="text/css" href=" {% static 'css-secondary/libraries/jslider/bin/jquery.slider.min.css' %}" media="screen, projection">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href=" {% static 'css-secondary/release11/carat.css' %} " media="screen, projection">
-    <link rel="stylesheet" type="text/css" href=" {% static 'css-secondary/release11/mycss.css' %} " media="screen, projection">
+    <title>221.kg</title>
 
-    <link href="{% static 'css-secondary/main_test.css'%}" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/clean-news.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.min.css'%}">
+    
+  </head>
 
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:100,400,700,400italic,700italic" rel="stylesheet" type="text/css"  media="screen, projection">
+  <body>
 
-    <title>iBox | Покупай и продавай вместе с нами!</title>
-</head>
-<body>
+  <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MVJK9M"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MVJK9M');</script>
+  <!-- End Google Tag Manager -->
 
-<!-- Include header template-->
-{% include "header.html"%}
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a  class="navbar-brand" href="{% url 'news:index'%}"> <img id="logo" src="{% static 'images/logo1.png'%}"></a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'main:team'%}">О нас</a></li>
+            <li><a href="#footer">Kонтакты</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
 
 
-<div class="infobar">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<ol class="breadcrumb pull-left">
-		  			<li><a href="{% url 'main:main' %}">Главная</a></li>
-                    <li><a href="{% url 'news:main' %}">Новости</a></li>
-                    <li><a href="{% url 'news:league' league.id %}">{{league.title}}</a></li>
-                    <li><a href="{% url 'news:team' team.id %}">{{team.title}}</a></li>
-
-				</ol>
-
-				<div class="contact pull-right">
-
-					<div class="contact-item mail">
-						<div class="label"><i class="icon icon-normal-mail"></i></div><!-- /.label -->
-						<div class="value">info@ibox.kg</div><!-- /.value -->
-					</div><!-- /.mail -->
-				</div><!-- /.contact -->
-			</div><!-- /.col-md-12 -->
-		</div><!-- /.row -->
-	</div><!-- /.container -->
-</div><!-- /.infobar -->
-    <div id="main">
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{message.tags}} fade in text-center">
-                <a href="#" class="close" data-dismiss="alert">&times;</a>
-                <h5><strong>{{message}}</strong></h5>
-            </div>
-        {% endfor %}
-    {% endif %}
-
-    <div class="section gray-light">
+    <header class="intro-header" style="background-image: url(../../../media/{{this_team.image1}})">
         <div class="container">
             <div class="row">
-
-<div class="col-md-3 col-sm-6">
-    <br><br><br><br><br><br>
-    <div class="sidebar">
-        <div id="newsletter" class='block default'>
-          <div class="block-inner">
-           <div class="page-header-inner">
-            <div class="line">
-                <hr/>
-            </div><!-- /.line -->
-            <div class="heading text-center">
-                <h2 style="color:white">Лиги</h2>
-            </div><!-- /.heading -->
-
-            <div class="line">
-                <hr/>
-            </div><!-- /.line -->
-          </div><!-- /.page-header-inner -->
-             <div class="list-group">
-             <a href="{% url 'news:main' %}" class="list-group-item">Все лиги</a>
-             {% for leag in leagues %}
-                {% if leag == league %}
-                    <a href="{% url 'news:league' leag.id %}" class="list-group-item active">{{league.title}}</a>
-                {% else %}
-                    <a href="{% url 'news:league' leag.id %}" class="list-group-item">{{leag.title}}</a>
-                {% endif %}
-             {% endfor %}
-             
-             </div>
-             <div class="line">
-                <hr/>
-            </div><!-- /.line -->
-             <div class="heading text-center">
-                <h3 style="color:white">Команды</h3>
-            </div><!-- /.heading -->
-            <div class="line">
-                <hr/>
-            </div><!-- /.line -->
-            <div class="list-group">
-               {% for team_temp in teams %}
-                    {% if team_temp == team %}
-                        <a href="{% url 'news:team' team_temp.id %}" class="list-group-item active">{{team_temp.title}}</a>
-                    {% else %}
-                        <a href="{% url 'news:team' team_temp.id %}" class="list-group-item">{{team_temp.title}}</a>
-                    {% endif %}
-               {% endfor %}
-            </div>
-          </div>
-          </div>          
-    </div><!-- /.sidebar -->
- 
-</div><!-- /.col-md-3 -->
-                <div class="col-md-9 col-sm-12">
-                    <div id="main">
-                        <div class="row-block block" id="best-deals">
-    <div class="page-header">
-        <div class="page-header-inner">
-            <div class="line">
-                <hr/>
-            </div><!-- /.line -->
-                <div class="heading">
-                    <h2>Новости {{team.title}}</h2>
-                </div><!-- /.heading -->
-
-            <div class="line">
-                <hr/>
-            </div><!-- /.line -->
-        </div><!-- /.page-header-inner -->
-    </div><!-- /.page-header -->
-
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="content white">
-                <div class="inner">
-                    {% for new in news %}
-
-                    <div class="row-item">
-                            <div class="inner">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-5 col-sm-5">
-                                        <div class="picture">
-                                            <div class="image-slider">
-
-                                                    {% if new.image %}
-                                                        <a href="{% url 'news:content' new.id %}" class="slide">
-                                                            <img src="../../../media/{{new.image}}" alt="{{ new.title }}">
-                                                        </a>
-                                                    {% endif %}
-                                                <div class="cycle-pager"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-8 col-md-7 col-sm-7">
-
-                                        <div class="content-inner">
-                                            <h2>
-                                                <a href="{% url 'news:content' new.id %}">
-                                                    {{new.title|slice:"50"}}
-                                                </a>
-                                            </h2>
-                                            
-                                            
-                                            <!--
-                                            <div class="description">
-                                                <p>{{instance.note|slice:":100" }}</p>
-                                            </div>
-                                            -->
-                                            <div class="meta">
-                                                <ul>
-
-                                                         
-                                                        <li><i class="fa none">Команда:</i><i style="color: orangered" class="fa price">&nbsp  
-                                                            <h3 style="display:inline">
-                                                                <a href="{% url 'news:team' new.team.id %}">
-                                                                    {{new.team.title}}
-                                                                </a>
-                                                            </h3>
-                                                            </i></li>
-                                                        
-                                                        </li>
-                                                     
-                                                        <li><i class="fa none">Прочитано:</i><i style="color: orangered" class="fa price">&nbsp  {{new.readed}}</i></li>
-                                                    <li data-toggle="tooltip" title="Дата обновления"><i class="fa fa-refresh price" > &nbsp{{ new.added_date|date:"d.m.Y" }} </i></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    <div class="row">
-
-                                    <div class="col-md-6">
-                                        {% if new in user_wish %}
-                                            <a class="text-center form-control btn-primary-color btn-info " style="text-decoration:none; background-color:#0F5D79;" href=""><i class="icon icon-normal-star"></i> Прочитал </a>
-                                        {% else %}
-                                            <a class="text-center form-control btn-primary-color btn-info" style=" background-color:#0F5D79; text-decoration:none;" href=""><i class="icon icon-normal-star"></i>Прочитать потом</a>
-                                        {% endif %}
-                                    </div>
-                                    <div class="col-md-6">
-                                        <a href="{% url 'news:content' new.id %}" class=" btn text-center  btn-primary-color form-control btn-primary"  style="text-decoration:none;">
-                                        Подробнее   <i class="fa fa-chevron-right"></i></a>
-                                    </div>
-                                    </div>
-                                    <br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    {% empty %} 
-                    <h2 class="text-center"> Пока нет новостей</h2>
-                    {% endfor %}                             
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>{{this_team.name}}</h1>
+                        <hr class="small">
+                        <span class="subheading">{{this_team.slogan}}</span>
+                    </div>
                 </div>
-            </div><!-- /.content -->
-        </div><!-- /.col-md-12 -->
-    </div><!-- /.row -->
-</div><!-- /.block -->                    
-</div><!-- /#main -->
-<!--<p class="btn btn-primary from-control">Want more</p>-->
-</div><!-- /.col-md-9 -->
-</div><!-- /.row -->
-</div><!-- /.container -->
-</div><!-- /.section -->
-</div>
-<section style="background-color:#f95446; ">
-        <div class="container text-center">
-            <nav>
-                <ul class="pager">
-                    {% if news.has_previous %}
-                        <li class="previous"><a href="?page={{ news.previous_page_number }}"><span aria-hidden="true">&larr;</span> Пред. </a></li>
-                    {% else %}
-                        <li class="previous disabled" style="visibility: hidden;"><a href=""><span aria-hidden="true">&larr;</span> Пред. </a></li>
-                    {% endif %}
-                   <span style="color:white"> Страница {{ news.number }} из {{ news.paginator.num_pages }}. </span>
-                    {% if news.has_next %}
-                        <li class="next"><a href="?page={{ news.next_page_number }}">След. <span aria-hidden="true">&rarr;</span></a></li>
-                    {% else %}
-                        <li class="next disabled" style="visibility: hidden;"><a href="">След. <span aria-hidden="true">&rarr;</span></a></li>
-                    {% endif %}
-                </ul>
-            </nav>
+            </div>
         </div>
-    </section>
-<!-- Includes footer form tempate folder outside -->
-{% include "footer_without_privet.html" %}
+    </header>
+    <!-- Here we have maincontent -->
+    <br><br>
 
 
-<!-- Model pages -->
+    <div class="container">
 
-<!-- /#includes exti modal page-->
-{% include "exit_modal_page.html" %}
+      <div class="row">
+        <div class="col-md-3">
+          <a href="{% url 'news:index'%}"><h4>все новости</h4></a>
+          <h4>Leagues</h4>
+          <h5 style="color:green">{{this_league.name}}</h5>
+          <ul>
+            <li><h5><a href="{% url 'news:league' this_league.id %}">все новости</a></h5></li>
+            <li><h5 style="color:green">{{this_team.name}}</h5></li>
+            {% for team in teams %}
+              <li><h5><a href="{% url 'news:team' this_league.id team.id %}">{{team.name}}</a></h5></li>
+            {% endfor %}
+          </ul>
+          {% for league in leagues %}
+            <h5><a href="{% url 'news:league' league.id %}">{{league.name}}</a></h5>
+          {% endfor %}
+        </div>
+
+        <div class="col-md-8">
+          {% for new in news %}
+          <div class="post-preview">
+            <a href="{% url 'news:news' new.id %}">
+              <h4 class="post-title">
+                {{new.title}}
+              </h4>
+              <h5 class="post-subtitle">
+                {{new.description}}
+              </h5>
+            </a>
+               <p class="post-meta">   {{new.date}} {{new.user}} </p>
+          </div>
+          <hr>
+          {% endfor %}
+        </div>
+
+      </div>
+
+    </div>
 
 
+    <br><br>
 
-<script src=" {% static 'js-secondary/release11/jquery.js' %}"></script>
-<script src="../code.jquery.com/jquery-migrate-1.2.1.js"></script>
-<script src=" {% static 'js-secondary/release11/jquery.ui.js' %}"></script>
-<script src=" {% static 'js-secondary/release11/bootstrap.js' %}"></script>
-<script src=" {% static 'js-secondary/release11/cycle.js' %}"></script>
-<script src=" {% static 'js-secondary/libraries/jquery.bxslider/jquery.bxslider.js' %}"></script>
-<script src=" {% static 'js-secondary/libraries/easy-tabs/lib/jquery.easytabs.min.js' %}"></script>
-<script src=" {% static 'js-secondary/libraries/chosen/chosen.jquery.js' %}"></script>
-<script src=" {% static 'js-secondary/libraries/star-rating/jquery.rating.js' %}"></script>
-<script src=" {% static 'js-secondary/libraries/colorbox/jquery.colorbox-min.js' %}"></script>
-<script src=" {% static 'js-secondary/libraries/jslider/bin/jquery.slider.min.js' %}"></script>
-<script src=" {% static 'js-secondary/libraries/ezMark/js/jquery.ezmark.js' %}"></script>
-<script src=" {% static 'js-secondary/myjs.js'%}"></script>
+  <div class="footer">
+    <footer id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <a href="https://www.facebook.com/oskar.dasilva.7">
+              <span class="fa-stack fa-lg text-left">
+                <i class="fa fa-square-o fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x"></i>
+              </span>Подпишись на наш Twitter<br>
+            </a>
 
-<script type="text/javascript" src=" {% static 'js-secondary/libraries/flot/jquery.flot.js' %}"></script>
-<script type="text/javascript" src=" {% static 'js-secondary/libraries/flot/jquery.flot.canvas.js' %}"></script>
-<script type="text/javascript" src=" {% static 'js-secondary/libraries/flot/jquery.flot.resize.js' %}"></script>
-<script type="text/javascript" src=" {% static 'js-secondary/libraries/flot/jquery.flot.time.js' %}"></script>
+            <a href="https://www.facebook.com/oskar.dasilva.7">
+              <span class="fa-stack fa-lg text-left">
+                <i class="fa fa-square-o fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x"></i>
+              </span>Cтраничка Facebook <br>
+            </a>  
+          </div>
 
-<script src="{% static 'js-secondary/main.js'%}"></script>
+          <div class="col-md-6">
+            <span class="fa-stack fa-lg text-left">
+               <i class="fa fa-square-o fa-stack-2x"></i>
+               <i class="fa fa-phone fa-stack-1x"></i>
+            </span> +996556606737<br>
+            <span class="fa-stack fa-lg text-left">
+              <i class="fa fa-square-o fa-stack-2x"></i>
+              <i class="fa fa-map-marker fa-stack-1x"></i>
+            </span>Тунгуч,улица Анкара 1/8<br>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
 
-<script src="http://maps.googleapis.com/maps/api/js?sensor=true&amp;v=3.13"></script>
-<script src=" {% static 'js-secondary/release11/carat.js' %}"></script></body>
+  <!-- Core JavaScript Files -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static 'js/jquery.easing.min.js'%}"></script> 
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/wow.min.js'%}"></script>
+    <script src="{% static 'js/custom.js'%}"></script>
+
+
+<!-- WWW.NET.KG , code for http://221.kg -->
+<script language="javascript" type="text/javascript">
+ java="1.0";
+ java1=""+"refer="+escape(document.referrer)+"&amp;page="+escape(window.location.href);
+ document.cookie="astratop=1; path=/";
+ java1+="&amp;c="+(document.cookie?"yes":"now");
+</script>
+<script language="javascript1.1" type="text/javascript">
+ java="1.1";
+ java1+="&amp;java="+(navigator.javaEnabled()?"yes":"now");
+</script>
+<script language="javascript1.2" type="text/javascript">
+ java="1.2";
+ java1+="&amp;razresh="+screen.width+'x'+screen.height+"&amp;cvet="+
+ (((navigator.appName.substring(0,3)=="Mic"))?
+ screen.colorDepth:screen.pixelDepth);
+</script>
+<script language="javascript1.3" type="text/javascript">java="1.3"</script>
+<script language="javascript" type="text/javascript">
+ java1+="&amp;jscript="+java+"&amp;rand="+Math.random();
+ document.write("<a href='http://www.net.kg/stat.php?id=4236&amp;fromsite=4236' target='_blank'>"+
+ "<img src='http://www.net.kg/img.php?id=4236&amp;"+java1+
+ "' border='0' alt='WWW.NET.KG' width='88' height='10' /></a>");
+</script>
+<noscript>
+ <a href='http://www.net.kg/stat.php?id=4236&amp;fromsite=4236' target='_blank'><img
+  src="http://www.net.kg/img.php?id=4236" border='0' alt='WWW.NET.KG' width='88'
+  height='10' /></a>
+</noscript>
+<!-- /WWW.NET.KG -->
+
+ </body>
 </html>
+    
+    
